@@ -16,15 +16,15 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-<!--    <modules>-->
-<!--        <module>product</module>-->
-<!--        <module>order</module>-->
-<!--        <module>member</module>-->
-<!--        <module>coupon</module>-->
-<!--        <module>security</module>-->
-<!--        <module>common</module>-->
-<!--        <module>mall-api</module>-->
-<!--    </modules>-->
+    <!--    <modules>-->
+    <!--        <module>product</module>-->
+    <!--        <module>order</module>-->
+    <!--        <module>member</module>-->
+    <!--        <module>coupon</module>-->
+    <!--        <module>security</module>-->
+    <!--        <module>common</module>-->
+    <!--        <module>mall-api</module>-->
+    <!--    </modules>-->
 
     <properties>
         <java.version>1.8</java.version>
@@ -36,10 +36,10 @@
         <spring-cloud-starter-bootstrap>3.0.5</spring-cloud-starter-bootstrap>
         <spring-boot.version>2.4.2</spring-boot.version>
         <duboo.version>3.0.3</duboo.version>
-        <spring-cloud.version> 2021.0.1</spring-cloud.version>
-        <nacos.version> 2021.1</nacos.version>
-        <druid.version> 1.2.8</druid.version>
-        <esclient.version> 7.6.2</esclient.version>
+        <spring-cloud.version>2021.0.1</spring-cloud.version>
+        <nacos.version>2021.1</nacos.version>
+        <druid.version>1.2.8</druid.version>
+        <esclient.version>7.6.2</esclient.version>
         <redis.version>2.6.5</redis.version>
         <redisson.version>3.17.0</redisson.version>
         <amqp.version>2.6.5</amqp.version>
@@ -122,8 +122,6 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-
-
 
 
             <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-redis -->
