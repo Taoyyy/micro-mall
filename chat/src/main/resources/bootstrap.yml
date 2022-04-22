@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: chat
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: 23ceb970-39e1-4534-8b08-c16132a1430b
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yml
+        namespace: 23ceb970-39e1-4534-8b08-c16132a1430b
+        group: DEFAULT_GROUP
+        name: application

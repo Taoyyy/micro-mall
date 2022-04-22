@@ -1,0 +1,20 @@
+server:
+  port: 7010
+spring:
+  redis:
+    host: 192.168.231.136
+    port: 6379
+    password: admin
+    database: 0
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+netty:
+  name: netty-server
+  port: 6950
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuan.message.mapper.ChatMessageMapper">
+
+    <sql id="Base_Column_List">
+        id,from,to,
+        message,msgType,signed
+    </sql>
+    <insert id="insertSelective" parameterType="com.yuan.mallapi.domain.chat.ChatMessage">
+        insert into ums_member values (#{id},#{sender},#{receiver},#{message},#{msgType},#{signed})
+
+    </insert>
+    <update id="signMessage" >
+        UPDATE chat_message SET signed = 1 WHERE id = #{id}
+    </update>
+    <select id="pullUnreceivedMessage" resultType="com.yuan.mallapi.domain.chat.ChatMessage">
+        SELECT * FROM chat_message WHERE receiver=#{receiver} and signed=0
+    </select>
+</mapper>
