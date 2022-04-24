@@ -158,5 +158,12 @@
             <if test="modifyTime != null">#{modifyTime,jdbcType=TIMESTAMP},</if>
         </trim>
     </insert>
+    <update id="shutDownOrder">
+        update oms_order
+        set status = 4
+        where order_sn = #{orderSn}
+            and `status` is NULL
+           or `status` = 0
+    </update>
 
 </mapper>
