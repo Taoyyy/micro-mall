@@ -16,6 +16,7 @@ public class ChatMessageUsersPullMessage {
     @Autowired
     private ChatMessageService messageService;
 
+    //从mysql中拉取离线消息
     @RabbitHandler
     public void getUsersPullMessage(String id, Channel channel, Message message) {
         System.out.println("用户：" + id + "需要从mysql中拉取离线消息");

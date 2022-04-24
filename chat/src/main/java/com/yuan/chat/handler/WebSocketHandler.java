@@ -35,6 +35,7 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<TextWebSocketF
     private StringRedisTemplate redisTemplate;
 
 
+//接收并处理消息
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, TextWebSocketFrame msg) throws Exception {
         System.out.println("服务器端收到消息：" + msg.text());
@@ -45,6 +46,7 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<TextWebSocketF
         String jwt = json.getString("msg");
         Long sender = json.getLong("sender");
         Long receiver = json.getLong("receiver");
+
         //初始化，绑定用户和channel，并注册到channelMap
         if (msgType == 1) {
             Claims claims = JwtUtil.parseJWT(jwt);
@@ -73,6 +75,7 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<TextWebSocketF
     }
 
     //将当前channel加入到channelGroup
+    //有用户上线
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) {
         Channel channel = ctx.channel();
@@ -108,9 +111,6 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<TextWebSocketF
 
     /**
      * 根据用户id获取该用户的通道
-     *
-     * @param userId
-     * @return
      */
     public Channel getChannelByUserId(String userId) {
         return channelMap.get(userId);
