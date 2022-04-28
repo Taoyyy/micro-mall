@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuan.member.mapper.PermsMapper">
+
+    <resultMap id="BaseResultMap" type="com.yuan.member.entity.Perms">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="permsName" column="perms_name" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="CHAR"/>
+        <result property="path" column="path" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id
+        ,perms_name,status,
+        path
+    </sql>
+    <select id="selectPermsByUserId" resultType="java.lang.String">
+        SELECT DISTINCT p.perms_name
+        FROM sys_user_role ur
+                 LEFT JOIN sys_role r on ur.role_id = r.id
+                 LEFT JOIN sys_role_perms rp ON r.id = rp.perms_id
+                 LEFT JOIN sys_perms p ON rp.perms_id = p.id
+        where user_id = #{userid}
+          AND r.`status` = 0
+          AND p.`status` = 0
+
+    </select>
+</mapper>

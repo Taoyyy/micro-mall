@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuan.member.mapper.AccountTblMapper">
+
+    <resultMap id="BaseResultMap" type="com.yuan.mallapi.domain.member.AccountTbl">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+            <result property="money" column="money" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,money
+    </sql>
+    <update id="debit" >
+        UPDATE account_tbl set money = money - #{money} WHERE user_id =#{userId}
+    </update>
+</mapper>

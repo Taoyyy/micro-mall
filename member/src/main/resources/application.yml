@@ -1,0 +1,47 @@
+server:
+  port: 7000
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/member?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: root
+    password: admin
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: assign_id
+  configuration:
+    map-underscore-to-camel-case: true
+dubbo:
+  protocol:
+    name: dubbo
+    port: 20882
+  registry:
+    address: 127.0.0.1:8848
+    protocol: nacos
+  consumer:
+    check: false
+    sentinel:
+      transport:
+        dashboard: localhost:8333
+        port: 8719
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+seata:
+  application-id: account
+  tx-service-group: my_test_tx_group # 一定用这个默认的
+  enabled: true
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 127.0.0.1:8848
+      group: SEATA_GROUP
+      namespace: ""
+      username: nacos
+      password: nacos
+
+

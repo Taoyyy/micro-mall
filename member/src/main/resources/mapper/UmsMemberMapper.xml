@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuan.member.mapper.UmsMemberMapper">
+
+
+
+    <sql id="Base_Column_List">
+        id,level_id,username,
+        password,nickname,mobile,
+        email,header,gender,
+        birth,city,job,
+        sign,source_type,integration,
+        growth,status,create_time,sharding_db
+    </sql>
+    <insert id="insertSelective">
+        insert into ums_member
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="levelId != null">level_id,</if>
+            <if test="username != null">username,</if>
+            <if test="password != null">password,</if>
+            <if test="nickname != null">nickname,</if>
+            <if test="mobile != null">mobile,</if>
+            <if test="email != null">email,</if>
+            <if test="header != null">header,</if>
+            <if test="gender != null">gender,</if>
+            <if test="birth != null">birth,</if>
+            <if test="city != null">city,</if>
+            <if test="job != null">job,</if>
+            <if test="sign != null">sign,</if>
+            <if test="sourceType != null">source_type,</if>
+            <if test="integration != null">integration,</if>
+            <if test="growth != null">growth,</if>
+            <if test="status != null">status,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="sharding_db != null">sharding_db,</if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id,jdbcType=BIGINT},</if>
+            <if test="levelId != null">#{levelId,jdbcType=BIGINT},</if>
+            <if test="username != null">#{username,jdbcType=CHAR},</if>
+            <if test="password != null">#{password,jdbcType=VARCHAR},</if>
+            <if test="nickname != null">#{nickname,jdbcType=VARCHAR},</if>
+            <if test="mobile != null">#{mobile,jdbcType=VARCHAR},</if>
+            <if test="email != null">#{email,jdbcType=VARCHAR},</if>
+            <if test="header != null">#{header,jdbcType=VARCHAR},</if>
+            <if test="gender != null">#{gender,jdbcType=TINYINT},</if>
+            <if test="birth != null">#{birth,jdbcType=DATE},</if>
+            <if test="city != null">#{city,jdbcType=VARCHAR},</if>
+            <if test="job != null">#{job,jdbcType=VARCHAR},</if>
+            <if test="sign != null">#{sign,jdbcType=VARCHAR},</if>
+            <if test="sourceType != null">#{sourceType,jdbcType=TINYINT},</if>
+            <if test="integration != null">#{integration,jdbcType=INTEGER},</if>
+            <if test="growth != null">#{growth,jdbcType=INTEGER},</if>
+            <if test="status != null">#{status,jdbcType=TINYINT},</if>
+            <if test="createTime != null">#{createTime,jdbcType=TIMESTAMP},</if>
+            <if test="sharding_db != null">#{sharding_db,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    
+
+
+
+
+</mapper>
