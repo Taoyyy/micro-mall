@@ -1,0 +1,24 @@
+server:
+  port: 7007
+spring:
+  redis:
+    host: 192.168.231.136
+    port: 6379
+    password: admin
+    database: 0
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+dubbo:
+  protocol:
+    name: dubbo
+    port: 20883
+  registry:
+    address: 127.0.0.1:8848
+    protocol: nacos
+  consumer:
+    check: false
+
+
