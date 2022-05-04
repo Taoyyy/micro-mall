@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.6.7</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <artifactId>docker</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>docker</name>
+    <description>docker</description>
+    <properties>
+        <java.version>1.8</java.version>
+        <!--            <mybatis-plus.version>3.5.1</mybatis-plus.version>-->
+        <!--            <mybatis-plus-generator.version>3.5.2</mybatis-plus-generator.version>-->
+        <!--            <mysql-connector-java.version>8.0.27</mysql-connector-java.version>-->
+        <!--            <lombok.version>1.18.20</lombok.version>-->
+        <!--            <spring-cloud-alibaba.version>2021.0.1.0</spring-cloud-alibaba.version>-->
+        <!--            <spring-cloud-starter-bootstrap>3.0.5</spring-cloud-starter-bootstrap>-->
+        <!--            <spring-boot.version>2.4.2</spring-boot.version>-->
+        <!--            <duboo.version>3.0.3</duboo.version>-->
+        <!--            <spring-cloud.version> 2021.0.1</spring-cloud.version>-->
+        <!--            <nacos.version> 2021.1</nacos.version>-->
+        <!--            <druid.version> 1.2.8</druid.version>-->
+        <!--            <esclient.version> 7.6.2</esclient.version>-->
+        <!--            <redis.version>2.6.5</redis.version>-->
+        <!--            <redisson.version>3.17.0</redisson.version>-->
+        <!--            <amqp.version>2.6.5</amqp.version>-->
+    </properties>
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <version>2.6.5</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.27</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>3.5.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>com.yuan</groupId>-->
+        <!--            <artifactId>common</artifactId>-->
+        <!--            <version>0.0.1-SNAPSHOT</version>-->
+        <!--            <scope>compile</scope>-->
+        <!--        </dependency>-->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <!--加入下面两项配置-->
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <includeSystemScope>true</includeSystemScope>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.1.0</version>
+                <executions>
+                    <execution>
+                        <id>build-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!--镜像名称-->
+                    <imageName>micro-mall/${project.artifactId}:${project.version}</imageName>
+                    <!--Docker远程api地址-->
+                    <dockerHost>http://192.168.231.136:2375</dockerHost>
+                    <!--指定标签-->
+                    <imageTags>
+                        <imageTag>latest</imageTag>
+                    </imageTags>
+                    <maintainer>yuyuuyuy@qq.com</maintainer>
+                    <!--基础镜像-->
+                    <baseImage>java:8</baseImage>
+                    <entryPoint>["java", "-jar","/${project.build.finalName}.jar"]
+                    </entryPoint>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <!--指定要复制的根目录，${project.build.directory}表示target目录-->
+                            <directory>${project.build.directory}</directory>
+                            <!--指定要复制文件，${project.build.finalName}.jar指打包后的jar包文件-->
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

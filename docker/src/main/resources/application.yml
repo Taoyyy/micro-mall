@@ -1,0 +1,39 @@
+server:
+  port: 7002
+spring:
+  application:
+    name: product
+#  redis:
+#    host: 192.168.231.136
+#    port: 6379
+#    password: admin
+#    database: 0
+#    jedis:
+#      pool:
+#        max-active: 8
+#        max-wait: -1ms
+#        max-idle: 8
+#        min-idle: 0
+  datasource:
+    url: jdbc:mysql://192.168.231.136:3306/product?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: admin
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#  cache:
+#    type: redis
+#    #    缓存过期时间一致会造成雪崩
+#    redis:
+#      time-to-live: 3600000
+#      key-prefix: CACHE_
+#      use-key-prefix: true
+#      cache-null-values: true
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: assign_id
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: mapper/PmsCategoryMapper.xml
+#  configuration:
+#    log-impl: com.yuan.product.service.impl
+
